@@ -1,0 +1,9 @@
+<div class="google-apps-login-links">
+  <% AuthSourceGoogleApp.all.each do |domain| %>
+  <% Rails.logger.error domain.inspect %> 
+  <div class="google-apps-login">
+    <%= image_tag 'apps-16.png', :plugin => 'google_apps' %>
+    <%= link_to "Login with #{domain.name} account", google_apps_login_path(domain.id) %>
+  </div>
+  <% end %>
+</div>

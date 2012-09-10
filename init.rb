@@ -1,9 +1,5 @@
 require 'redmine'
 
-if RAILS_ENV == 'development'
-  ActiveSupport::Dependencies.load_once_paths.reject!{|x| x =~ /^#{Regexp.escape(File.dirname(__FILE__))}/}
-end
-
 require_dependency 'google_apps/hooks'
 
 Redmine::Plugin.register :google_apps do
@@ -14,6 +10,5 @@ Redmine::Plugin.register :google_apps do
   url 'https://github.com/waj/redmine_google_apps'
   author_url 'http://weblogs.manas.com.ar/waj'
 
-  menu :admin_menu, :google_apps, { :controller => 'google_apps', :action => 'admin' }, :caption => 'Google Apps'
-
+  menu :admin_menu, :google_apps, { controller: 'google_apps_auth_sources', action: 'index' }, :caption => 'Google Apps'
 end
