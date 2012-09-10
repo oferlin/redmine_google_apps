@@ -10,5 +10,4 @@ class AuthSourceGoogleApp < AuthSource
   def auth_method_name
     "Google App"
   end
-  
 end

@@ -3,8 +3,6 @@ require 'gapps_openid'
 class GoogleAppsController < AccountController
   unloadable
 
-  # layout 'admin'
-
   AX_EMAIL = 'http://axschema.org/contact/email'
   AX_FIRST = 'http://axschema.org/namePerson/first'
   AX_LAST = 'http://axschema.org/namePerson/last'
@@ -29,7 +27,7 @@ class GoogleAppsController < AccountController
       user = domain.users.find_by_mail email
       if user.nil?
         unless domain.onthefly_register?
-          flash[:error] = 'Account not found. Please contact your administrator.'
+          flash[:error] = l(:notice_account_with_googleapps_openid_not_exists)
           return redirect_to :controller => :account, :action => :login
         end
 
@@ -40,7 +38,7 @@ class GoogleAppsController < AccountController
           user.auth_source = domain
           user.save!
         rescue
-          flash[:error] = 'There was an error creating your account. Please contact your administrator.'
+          flash[:error] = l(:notice_account_with_googleapps_openid_failed)
           return redirect_to :controller => :account, :action => :login
         end
       end
