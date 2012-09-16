@@ -9,7 +9,7 @@ class GoogleAppsController < AccountController
 
   def login
     domain = AuthSourceGoogleApp.find params[:id]
-    oid = "https://www.google.com/accounts/o8/site-xrds?hd=#{domain.name}"
+    oid = "https://www.google.com/accounts/o8/site-xrds?hd=#{domain.host}"
     attributes = [AX_EMAIL, AX_FIRST, AX_LAST]
 
     authenticate_with_open_id(oid, :return_to => request.url, :required => attributes) do |result, identity_url, profile_data|
