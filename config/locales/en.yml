@@ -4,3 +4,4 @@ en:
   notice_account_with_googleapps_openid_not_exists: 'Account not found. Please contact your administrator.'
   notice_account_with_googleapps_openid_failed: 'There was an error creating your account. Please contact your administrator.'
   label_authentication_modes: 'Authentication modes'
+  error_google_apps_discovery_info_not_found: 'Discovery infotmation for %{host} not found'
