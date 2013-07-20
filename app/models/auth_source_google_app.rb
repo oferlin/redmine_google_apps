@@ -1,7 +1,7 @@
 class AuthSourceGoogleApp < AuthSource
   unloadable
 
-  validates :name, :host, presence: true, length: { maximum: 60 }
+  validates :host, presence: true, length: { maximum: 60 }
 
   def test_connection
     true
