@@ -3,3 +3,4 @@ en:
   label_auth_source_google_new: "New domain"
   notice_account_with_googleapps_openid_not_exists: 'Account not found. Please contact your administrator.'
   notice_account_with_googleapps_openid_failed: 'There was an error creating your account. Please contact your administrator.'
+  label_authentication_modes: 'Authentication modes'

@@ -9,6 +9,9 @@ Redmine::Plugin.register :google_apps do
   version '0.1'
   url 'https://github.com/waj/redmine_google_apps'
   author_url 'http://weblogs.manas.com.ar/waj'
-
-  menu :admin_menu, :google_apps, { controller: 'google_apps_auth_sources', action: 'index' }, :caption => 'Google Apps'
 end
+
+Redmine::MenuManager.map(:admin_menu).delete(:ldap_authentication)
+Redmine::MenuManager.map(:admin_menu).push :ldap_authentication, {:controller => 'auth_sources', :action => 'index'},
+            :html => {:class => 'server_authentication'}, :caption => I18n.t(:label_authentication_modes) 
+
