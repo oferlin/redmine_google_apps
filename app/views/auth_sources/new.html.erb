@@ -1,4 +1,5 @@
-<h2><%=l(:label_auth_source_new)%> (<%= h(@auth_source.auth_method_name) %>)</h2>
+<h2><%= link_to l(:label_auth_source_plural), :controller => 'auth_sources', :action => 'index' %>
+  &#187; <%= l(:label_auth_source_new) %></h2>
 
 <%= labelled_form_for @auth_source, :as => :auth_source, :url => auth_sources_path, :html => {:id => 'auth_source_form'} do |f| %>
   <div class="box tabular">
