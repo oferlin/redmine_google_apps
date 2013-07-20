@@ -8,13 +8,13 @@ Differences from original plugin by Juan Wajnerman
 
 * Full support Redmine 2.x
 * "On the fly user creation" option
+* Google App authentication mode moved to *Authentication modes* menu in an Administration zone (old LDAP Authentication menu field)
 
 Requirements
 ------------
 
-* Redmine 2.0.x or newer
-* The gems 'ruby-openid' and 'ruby-openid-apps-discovery' installed
-* ... a Google Apps domain ;-)
+* Redmine 2.3.x or newer
+* Google Apps domain (your @gmail account will not work)
 
 Install
 -------
@@ -25,6 +25,10 @@ Clone the plugin source code into your Redmine's plugin directory.
 
 **NOTE:** Make sure the plugin directory is name `google_apps`.
 
+Copy plugin assets to a public directory.
+
+    rake redmine:plugins:assets
+
 Setup
 -----
 
@@ -33,11 +37,7 @@ Login with your administrator account, go to the Administration section and now 
 Logout and go to the login page again. Now a link to login with your Google Apps domain should be visible.
 
 Troubleshooting
------
+---------------
 
-**NOTE:** Current plugin tested on the Redmine 2.0.3 and trunk version 2.1 at 10 sep 2012
-
-"OpenID verification failed"
+**OpenID verification failed**
 * check permissions on [redmine]/tmp/cache - try to set 777
-* check gem list, it should contains a ruby-openid-apps-discovery (tested with 1.2.0)
-* ...
