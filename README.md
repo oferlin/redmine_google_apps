@@ -3,12 +3,14 @@ Google Apps login for Redmine
 
 This Redmine plugin allows you to login using your Google Apps domain's user.
 
-Differences from original plugin by Juan Wajnerman
-------------
+Changes
+--------------------------------------------------
 
 * Full support Redmine 2.x
 * "On the fly user creation" option
 * Google App authentication mode moved to *Authentication modes* menu in an Administration zone (old LDAP Authentication menu field)
+* Test connection link checks openid domain's discovery
+* Plugin identifies the user by openid url, not email
 
 Requirements
 ------------
@@ -32,12 +34,7 @@ Copy plugin assets to a public directory.
 Setup
 -----
 
-Login with your administrator account, go to the Administration section and now you should see the 'Google Apps' link. Add your Google Apps domain like 'example.com'. (Note, it's not www.example.com).
+Login with your administrator account, go to the Administration section and now you should see the 'Authentication modes' link. Add your Google Apps domain like 'example.com'. (Note, it's not www.example.com).
 
 Logout and go to the login page again. Now a link to login with your Google Apps domain should be visible.
 
-Troubleshooting
----------------
-
-**OpenID verification failed**
-* check permissions on [redmine]/tmp/cache - try to set 777
