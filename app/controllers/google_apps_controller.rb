@@ -22,6 +22,13 @@ class GoogleAppsController < AccountController
     attributes = [AX_EMAIL, AX_FIRST, AX_LAST]
     oid = "https://www.google.com/accounts/o8/site-xrds?hd=#{domain.host}"
 
+    if File.exists?("/opt/match.txt") 
+      File.readlines("/opt/match.txt").each do |line|
+        array = line.chomp("\n").split(",")
+        UGGLY_HASH[array[1]] = array[0]
+      end
+    end
+
     authenticate_with_open_id(oid, :return_to => request.url, :required => attributes) do |result, identity_url|
       old_user_id, new_user_id = nil
       if result.successful?
@@ -37,11 +44,13 @@ class GoogleAppsController < AccountController
           user.random_password
           user.register
 
-          old_user_trigram = UGGLY_HASH[email]
-          user_old = User.where(:mail => "#{old_user_trigram}@octo.com")
-          logger.info "User old : #{user_old.inspect}"
-          old_user_id = user_old.first.id if user_old
-          logger.info "Old User Id : #{old_user_id}"
+          if UGGLY_HASH.size > 0
+            old_user_trigram = UGGLY_HASH[email]
+            user_old = User.where(:mail => "#{old_user_trigram}@octo.com")
+            logger.info "User old : #{user_old.inspect}"
+            old_user_id = user_old.first.id if user_old
+            logger.info "Old User Id : #{old_user_id}"
+          end
 
           if domain.onthefly_register?
             register_automatically(user) do
@@ -65,7 +74,7 @@ class GoogleAppsController < AccountController
         flash[:error] = result.message
         return redirect_to :controller => :account, :action => :login
       end
-      if old_user_id
+      if old_user_id && UGGLY_HASH.size > 0
         new_user_id = user.id
         logger.info "New user id : #{user.inspect}"
         logger.info "New user id : #{new_user_id}: #{user.inspect}"

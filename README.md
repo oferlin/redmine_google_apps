@@ -1,6 +1,15 @@
 Google Apps login for Redmine
 =============================
 
+* Changes by Mikrob
+
+Manage import of existing users for Octo with an /opt/match.txt file to be set on the machine.
+The file should contains lines with this format :
+XXX, xylkdsmqd@email.com
+YYY, xyjlmdsqdsq@email.com
+
+If file isn't present behaviour is like forked plugin
+
 This Redmine plugin allows you to login using your Google Apps domain's user.
 
 Changes
@@ -23,7 +32,7 @@ Install
 
 Clone the plugin source code into your Redmine's plugin directory.
 
-    git clone git://github.com/dmitrynop/redmine_google_apps.git plugins/google_apps
+    git clone git://github.com/mikrob/redmine_google_apps.git plugins/google_apps
 
 **NOTE:** Make sure the plugin directory is name `google_apps`.
 
