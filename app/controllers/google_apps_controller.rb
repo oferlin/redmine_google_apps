@@ -45,8 +45,8 @@ class GoogleAppsController < AccountController
           user.register
 
           if UGGLY_HASH.size > 0
-            old_user = User.where(:mail => email).exists?
-            unless old_user
+            old_user = User.where(:mail => email)
+            unless old_user.exists?
               old_user_trigram = UGGLY_HASH[email]
               user_old = User.where(:mail => "#{old_user_trigram}@octo.com")
               logger.info "User old : #{user_old.inspect}"
