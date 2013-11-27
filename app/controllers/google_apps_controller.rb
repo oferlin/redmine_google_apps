@@ -82,9 +82,10 @@ class GoogleAppsController < AccountController
       if old_user_id && UGGLY_HASH.size > 0
         new_user_id = user.id
         logger.info "New user id : #{user.inspect}"
-        logger.info "New user id : #{new_user_id}: #{user.inspect}"
-        Issue.where(:author_id => old_user_id).map { |issue| issue.author_id = new_user_id; issue.save! }
-        Issue.where(:assigned_to_id => old_user_id).map { |issue| issue.assigned_to_id = new_user_id; issue.save! }
+        if new_user_id
+          Issue.where(:author_id => old_user_id).map { |issue| issue.author_id = new_user_id; issue.save! }
+          Issue.where(:assigned_to_id => old_user_id).map { |issue| issue.assigned_to_id = new_user_id; issue.save! }
+        end
         User.destroy(old_user_id)
       end
     end
