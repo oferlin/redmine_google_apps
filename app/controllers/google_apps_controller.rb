@@ -46,7 +46,7 @@ class GoogleAppsController < AccountController
 
           if UGGLY_HASH.size > 0
             old_user = User.where(:mail => email)
-            unless old_user.exists?
+            unless old_user.exists? && UGGLY_HASH[email]
               old_user_trigram = UGGLY_HASH[email]
               user_old = User.where(:mail => "#{old_user_trigram}@octo.com")
               logger.info "User old : #{user_old.inspect}"
@@ -80,7 +80,7 @@ class GoogleAppsController < AccountController
         flash[:error] = result.message
         return redirect_to :controller => :account, :action => :login
       end
-      if old_user_id && UGGLY_HASH.size > 0
+      if old_user_id && UGGLY_HASH.size > 0 && UGGLY_HASH[email]
         new_user_id = user.id
         logger.info "New user id : #{user.inspect}"
         if new_user_id
