@@ -50,8 +50,10 @@ class GoogleAppsController < AccountController
               old_user_trigram = UGGLY_HASH[email]
               user_old = User.where(:mail => "#{old_user_trigram}@octo.com")
               logger.info "User old : #{user_old.inspect}"
-              old_user_id = user_old.first.id if user_old
-              logger.info "Old User Id : #{old_user_id}"
+              if user_old
+                old_user_id = user_old.first.id if user_old
+                logger.info "Old User Id : #{old_user_id}"
+              end
             end
           end
 
