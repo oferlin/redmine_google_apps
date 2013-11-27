@@ -55,6 +55,7 @@ class GoogleAppsController < AccountController
             else
               old_user_id = old_user.first.id
             end
+            User.destroy(old_user_id)
           end
 
           if domain.onthefly_register?
@@ -86,7 +87,6 @@ class GoogleAppsController < AccountController
           Issue.where(:author_id => old_user_id).map { |issue| issue.author_id = new_user_id; issue.save! }
           Issue.where(:assigned_to_id => old_user_id).map { |issue| issue.assigned_to_id = new_user_id; issue.save! }
         end
-        User.destroy(old_user_id)
       end
     end
   end
