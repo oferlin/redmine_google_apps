@@ -53,7 +53,7 @@ class GoogleAppsController < AccountController
               old_user_id = user_old.first.id if user_old
               logger.info "Old User Id : #{old_user_id}"
             else
-              old_user_id = old_user.id
+              old_user_id = old_user.first.id
             end
           end
 
