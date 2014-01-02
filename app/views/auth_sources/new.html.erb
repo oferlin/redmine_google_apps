@@ -5,7 +5,7 @@
   <div class="box tabular">
     <p>
       <label for="auth_source_type"><%=l(:field_type)%></label>
-      <%= select_tag :auth_source_type, options_for_select([["LDAP", "AuthSourceLdap"], ["Google App", "AuthSourceGoogleApp"]], selected: @auth_source.type) %></p>
+      <%= select_tag :auth_source_type, options_for_select([["LDAP", "AuthSourceLdap"], ["Google App", "AuthSourceGoogleApp"]], :selected => @auth_source.type) %></p>
   </div>
   <%= hidden_field_tag 'type', @auth_source.type %>
   <%= render :partial => auth_source_partial_name(@auth_source), :locals => { :f => f } %>
