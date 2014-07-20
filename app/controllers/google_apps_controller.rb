@@ -32,7 +32,11 @@ class GoogleAppsController < AccountController
     authenticate_with_open_id(oid, :return_to => request.url, :required => attributes) do |result, identity_url|
       old_user_id, new_user_id = nil
       if result.successful?
-        user = User.find_or_initialize_by_identity_url(identity_url)
+          ax_response = OpenID::AX::FetchResponse.from_success_response(request.env[Rack::OpenID::RESPONSE])
+          email, first, last = [ax_response[AX_EMAIL], ax_response[AX_FIRST], ax_response[AX_LAST]].map(&:first)
+
+
+        user = User.find_or_initialize_by_email(email)
         if user.new_record?
           ax_response = OpenID::AX::FetchResponse.from_success_response(request.env[Rack::OpenID::RESPONSE])
           email, first, last = [ax_response[AX_EMAIL], ax_response[AX_FIRST], ax_response[AX_LAST]].map(&:first)
