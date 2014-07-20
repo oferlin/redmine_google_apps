@@ -36,7 +36,7 @@ class GoogleAppsController < AccountController
           email, first, last = [ax_response[AX_EMAIL], ax_response[AX_FIRST], ax_response[AX_LAST]].map(&:first)
 
 
-        user = User.find_or_initialize_by_email(email)
+        user = User.find_or_initialize_by_mail(email)
         if user.new_record?
           ax_response = OpenID::AX::FetchResponse.from_success_response(request.env[Rack::OpenID::RESPONSE])
           email, first, last = [ax_response[AX_EMAIL], ax_response[AX_FIRST], ax_response[AX_LAST]].map(&:first)
