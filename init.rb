@@ -13,5 +13,5 @@ end
 
 Redmine::MenuManager.map(:admin_menu).delete(:ldap_authentication)
 Redmine::MenuManager.map(:admin_menu).push :ldap_authentication, {:controller => 'auth_sources', :action => 'index'},
-            :html => {:class => 'server_authentication'}, :caption => I18n.t(:label_authentication_modes) 
+            :html => {:class => 'server_authentication'}, :caption => :label_authentication_modes
 
