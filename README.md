@@ -38,7 +38,7 @@ Clone the plugin source code into your Redmine's plugin directory.
 
 Copy plugin assets to a public directory.
 
-    rake redmine:plugins:assets
+    RAILS_ENV="production" rake redmine:plugins:assets
 
 Setup
 -----
